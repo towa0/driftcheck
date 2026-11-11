@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Same question, different number by language</title><style>
+*{box-sizing:border-box}
+body{font:16px/1.55 system-ui,-apple-system,sans-serif;margin:0 auto;max-width:760px;padding:1.25rem;color:#111;background:#fff}
+h1{font-size:1.35rem;line-height:1.3;margin:0 0 .75rem}
+h2{font-size:1.05rem;margin:1.75rem 0 .4rem}
+p,ul{margin:.4rem 0}
+ul{padding-left:1.2rem}
+.note{color:#555;font-size:.9rem}
+.wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:.45rem .5rem;border-bottom:1px solid #e3e3e3;vertical-align:top}
+th{background:#f6f6f6;font-weight:600}
+tr.diff td{background:#fff3f3}
+.high{color:#a4001c;font-weight:600}.medium{color:#8a4b00}.low{color:#555}
+.wrong{color:#555;font-style:italic}
+@media (max-width:600px){
+ table,tbody,tr,td{display:block;width:100%}
+ tr:first-child{display:none}
+ tr{border:1px solid #e3e3e3;border-radius:6px;margin:.6rem 0;padding:.3rem .5rem}
+ td{border:0;padding:.2rem 0}
+ td[data-l]::before{content:attr(data-l) ": ";font-weight:600;color:#333}
+ td.q{font-weight:600}
+}
+</style></head><body>
+
+<h1>If the English and Swedish help pages disagree, a chatbot that reads both could give two different answers.</h1>
+<p class="note">Everything below uses help pages I wrote myself for a made-up airline. No Finnair content or data.</p>
+
+<h2>What the tool does</h2>
+<ul>
+<li>Compares each translated help page with the English one.</li>
+<li>Points out where they disagree: a different number, a missing section, a missing or dead link, or a page that wasn't updated after the English one changed.</li>
+<li>Shows where the pages give different numbers for the same customer question.</li>
+</ul>
+
+<h2>What I found, on a test set I wrote myself</h2>
+<p>I wrote the same 5 help pages in English, Finnish, Swedish and German, and put 11 mistakes in them on purpose. I wrote both the mistakes and the tool, so this only shows the tool works as designed. It says nothing about real help pages. The tool caught 10 of 11. The one it missed I planted so number checks couldn't catch it. It flagged 11 things, and 10 of those were real. The simple check, “is the translation older than the English page?”, caught 2 of 11.</p>
+
+<h2>Limits</h2>
+<ul>
+<li>It misses changes in meaning. My Swedish refunds page says non-refundable tickets <i>can</i> be refunded, the opposite of the English. No number changed, so the tool didn't notice.</li>
+<li>It can flag correct pages. My Finnish page says “three weeks” in words where the English says “21 days”. That's correct, but the tool only looks for numbers, so it reported a missing deadline. I wrote that page that way on purpose, to see how the tool handles numbers written as words.</li>
+</ul>
+
+<h2>An open question</h2>
+<p>If you run a help centre in more than one language: do the versions ever disagree like this? Or does your translation setup already stop it?</p>
+
+<h2>Same question, different number</h2>
+<p class="note">The number each language's page gives as the answer. Shaded rows differ between languages.</p>
+<div class="wrap"><table><tr><th>Question</th><th>English</th><th>German</th><th>Finnish</th><th>Swedish</th></tr><tr class='diff'><td class='q'>How heavy can my cabin bag be?</td><td data-l='English'>8 kg</td><td data-l='German'>8 kg</td><td data-l='Finnish'>8 kg</td><td data-l='Swedish'>7.5 kg</td></tr><tr class='diff'><td class='q'>When does online check-in open?</td><td data-l='English'>36 hours</td><td data-l='German'>36 hours</td><td data-l='Finnish'>24 hours</td><td data-l='Swedish'>36 hours</td></tr><tr class='diff'><td class='q'>When does online check-in close?</td><td data-l='English'>60 minutes</td><td data-l='German'>45 minutes</td><td data-l='Finnish'>60 minutes</td><td data-l='Swedish'>60 minutes</td></tr><tr class='diff'><td class='q'>How long does a refund take?</td><td data-l='English'>7 days</td><td data-l='German'>14 days</td><td data-l='Finnish'>7 days</td><td data-l='Swedish'>7 days</td></tr><tr class='diff'><td class='q'>How long do I have to report a delayed bag?</td><td data-l='English'>21 days</td><td data-l='German'>21 days</td><td data-l='Finnish'>no number</td><td data-l='Swedish'>no number</td></tr></table></div>
+
+<h2>Everything the tool flagged</h2>
+<div class="wrap"><table><tr><th>How much it matters</th><th>Page</th><th>Language</th><th>Problem</th><th>Details</th></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Cabin baggage</td><td data-l='Language'>Swedish</td><td data-l='Problem'>Different number</td><td data-l='Details'>English says 8 kg, Swedish says 7.5 kg</td></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Meals and hotels during delays</td><td data-l='Language'>Finnish</td><td data-l='Problem'>Link to a page that doesn&#x27;t exist</td><td data-l='Details'>Links to /fi/disruption-help-old, a page that doesn&#x27;t exist</td></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Delayed baggage</td><td data-l='Language'>Finnish</td><td data-l='Problem'>Number missing</td><td data-l='Details'>English says 21 days; the Finnish page has no matching number<br><span class='wrong'>This flag is wrong. The page says &quot;kolme viikkoa&quot; (three weeks), which is correct. The tool only reads numbers, so it flagged it.</span></td></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Delayed baggage</td><td data-l='Language'>Swedish</td><td data-l='Problem'>Number missing</td><td data-l='Details'>English says 21 days; the Swedish page has no matching number</td></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Online check-in</td><td data-l='Language'>German</td><td data-l='Problem'>Different number</td><td data-l='Details'>English says 60 minutes, German says 45 minutes</td></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Online check-in</td><td data-l='Language'>Finnish</td><td data-l='Problem'>Different number</td><td data-l='Details'>English says 36 hours, Finnish says 24 hours</td></tr><tr><td data-l='How much it matters' class='high'>high</td><td data-l='Page'>Refunds</td><td data-l='Language'>German</td><td data-l='Problem'>Different number</td><td data-l='Details'>English says 7 days, German says 14 days</td></tr><tr><td data-l='How much it matters' class='medium'>medium</td><td data-l='Page'>Cabin baggage</td><td data-l='Language'>German</td><td data-l='Problem'>Section missing</td><td data-l='Details'>English page has 3 sections, German has 2</td></tr><tr><td data-l='How much it matters' class='medium'>medium</td><td data-l='Page'>Meals and hotels during delays</td><td data-l='Language'>Swedish</td><td data-l='Problem'>Link missing</td><td data-l='Details'>English page links to /sv/hotel-booking; Swedish page doesn&#x27;t</td></tr><tr><td data-l='How much it matters' class='low'>low</td><td data-l='Page'>Online check-in</td><td data-l='Language'>German</td><td data-l='Problem'>Not updated since the English page changed</td><td data-l='Details'>German last updated 2026-03-02; English changed on 2026-10-20</td></tr><tr><td data-l='How much it matters' class='low'>low</td><td data-l='Page'>Refunds</td><td data-l='Language'>Finnish</td><td data-l='Problem'>Not updated since the English page changed</td><td data-l='Details'>Finnish last updated 2026-05-04; English changed on 2026-10-10</td></tr></table></div>
+</body></html>

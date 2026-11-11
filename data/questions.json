@@ -1,0 +1,10 @@
+{
+  "_note": "Customer questions I wrote. Each one points to the section and unit that holds the answer.",
+  "questions": [
+    {"q": "How heavy can my cabin bag be?",              "article": "cabin-baggage",   "section": 0, "unit": "kg"},
+    {"q": "When does online check-in open?",             "article": "online-checkin",  "section": 0, "unit": "hour"},
+    {"q": "When does online check-in close?",            "article": "online-checkin",  "section": 0, "unit": "minute"},
+    {"q": "How long does a refund take?",                "article": "refunds",         "section": 1, "unit": "day"},
+    {"q": "How long do I have to report a delayed bag?", "article": "delayed-baggage", "section": 0, "unit": "day"}
+  ]
+}

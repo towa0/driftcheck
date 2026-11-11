@@ -1,0 +1,19 @@
+{
+  "_note": "Problems I planted in the synthetic pages. detectable=false means the tool isn't built to catch it. I left it in so the test includes something the tool should miss.",
+  "issues": [
+    {"article": "cabin-baggage",   "locale": "sv", "type": "value_drift",     "detectable": true,  "what": "cabin bag 8 kg -> 7,5 kg"},
+    {"article": "cabin-baggage",   "locale": "de", "type": "missing_section", "detectable": true,  "what": "'Personal item' section dropped"},
+    {"article": "online-checkin",  "locale": "fi", "type": "value_drift",     "detectable": true,  "what": "check-in opens 36 h -> 24 h"},
+    {"article": "online-checkin",  "locale": "de", "type": "value_drift",     "detectable": true,  "what": "check-in closes 60 min -> 45 min"},
+    {"article": "online-checkin",  "locale": "de", "type": "stale",           "detectable": true,  "what": "translation older than source"},
+    {"article": "delay-care",      "locale": "fi", "type": "broken_link",     "detectable": true,  "what": "links to retired page"},
+    {"article": "delay-care",      "locale": "sv", "type": "missing_link",    "detectable": true,  "what": "hotel booking link replaced by 'contact customer service'"},
+    {"article": "refunds",         "locale": "fi", "type": "stale",           "detectable": true,  "what": "translation older than source (content happens to be fine)"},
+    {"article": "refunds",         "locale": "sv", "type": "semantic_drift",  "detectable": false, "what": "says non-refundable tickets CAN be refunded (meaning flipped, no number changed)"},
+    {"article": "refunds",         "locale": "de", "type": "value_drift",     "detectable": true,  "what": "refund processing 7 days -> 14 days"},
+    {"article": "delayed-baggage", "locale": "sv", "type": "missing_fact",    "detectable": true,  "what": "21-day reporting deadline dropped"}
+  ],
+  "known_non_issues": [
+    {"article": "delayed-baggage", "locale": "fi", "what": "The page says \"kolme viikkoa\" (three weeks), which is correct. The tool only reads numbers, so it flagged it."}
+  ]
+}
