@@ -8,6 +8,8 @@ This finds where pages drift: a different number, a dropped section, a missing o
 
 Why bother: an AI support assistant that answers from help pages in many languages can only be as consistent as those pages. If the Swedish page says 7.5 kg and the English one says 8 kg, an assistant reading them could give two answers. Both "grounded".
 
+![Same question, different number by language](docs/screenshot.png)
+
 Why Finnair comes up: their assistant Sisu "draws its answers directly from the latest content on the Finnair website", in 15 languages ([Finnair Blue Wings, Sisu article](https://www.finnair.com/en/bluewings/world-of-finnair/meet-finnair-s-ai-customer-service-assistant--sisu-4261942), published 28 Apr 2026, updated 15 Jun 2026).
 
 ## Run
